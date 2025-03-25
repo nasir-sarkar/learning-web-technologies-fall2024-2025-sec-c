@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOB</title>
+    <script>
+        function validateDOB(event) {
+            event.preventDefault();
+
+            const dayInput = document.getElementById('day').value.trim();
+            const monthInput = document.getElementById('month').value.trim();
+            const yearInput = document.getElementById('year').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+            if (dayInput === '' || monthInput === '' || yearInput === '') {
+                errorMessage.textContent = 'All fields must be filled out.';
+                return;
+            }
+
+            const day = Number(dayInput);
+            const month = Number(monthInput);
+            const year = Number(yearInput);
+
+            if (day < 1 || day > 31) {
+                errorMessage.textContent = 'Day must be between 1 and 31.';
+                return;
+            }
+            if (month < 1 || month > 12) {
+                errorMessage.textContent = 'Month must be between 1 and 12.';
+                return;
+            }
+            if (year < 1900 || year > 2016) {
+                errorMessage.textContent = 'Year must be between 1900 and 2016.';
+                return;
+            }
+
+            successMessage.textContent = 'Date of Birth is valid!';
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend><b>Date of Birth</b></legend>
+        <form onsubmit="validateDOB(event)">
+            <label for="day">   dd   </label>
+            <label for="month">   mm   </label>
+            <label for="year">   yyyy   </label><br>
+
+            <input type="text" id="day" name="day">
+            <label>   /   </label>
+            <input type="text" id="month" name="month">
+            <label>   /   </label>
+            <input type="text" id="year" name="year">
+            <br>
+            <span id="error-message" style="color: red;"></span>
+            <span id="success-message" style="color: green;"></span>
+            <hr><input type="submit" value="Submit">
+        </form>
+    </fieldset>
+</body>
+</html>
