@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name</title>
+    <script>
+        function validateName(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('name').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+
+            if (nameInput === '') {
+                errorMessage.textContent = 'Name cannot be empty.';
+                return;
+            }
+
+            const words = nameInput.split(' ');
+            if (words.length < 2) {
+                errorMessage.textContent = 'Name must contain at least two words.';
+                return;
+            }
+
+            for (let char of nameInput) {
+                if (!((char >= 'a' && char <= 'z') || 
+                       (char >= 'A' && char <= 'Z') || 
+                       char === '.' || 
+                       char === '-' || 
+                       char === ' ')) {
+                    errorMessage.textContent = 'Name can only contain letters, dots, dashes, and spaces.';
+                    return;
+                }
+            }
+
+            if (!(nameInput[0] >= 'a' && nameInput[0] <= 'z') && 
+                !(nameInput[0] >= 'A' && nameInput[0] <= 'Z')) {
+                errorMessage.textContent = 'Name must start with a letter.';
+                return;
+            }
+
+            successMessage.textContent = 'Name is valid!';
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="validateName(event)">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name"><br>
+        <span id="error-message" style="color: red;"></span>
+        <span id="success-message" style="color: green;"></span><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender</title>
+    <script>
+        function validateGender(event) {
+            event.preventDefault(); 
+
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+            const male = document.getElementById('male').checked;
+            const female = document.getElementById('female').checked;
+            const other = document.getElementById('other').checked;
+
+            if (!male && !female && !other) {
+                errorMessage.textContent = 'Please select at least one gender option.';
+                return;
+            }
+
+            successMessage.textContent = 'Selection is valid!';
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend><b>Gender</b></legend>
+        <form onsubmit="validateGender(event)">
+            <input type="radio" id="male" name="gender" value="Male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="Others">
+            <label for="other">Others</label><br>
+            <span id="error-message" style="color: red;"></span>
+            <span id="success-message" style="color: green;"></span>
+        </form>
+    </fieldset>
+    <br><input type="submit" value="Submit" onclick="validateGender(event)">
+</body>
+</html>

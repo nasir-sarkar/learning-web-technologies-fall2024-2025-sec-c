@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degree</title>
+    <script>
+        function validateDegrees(event) {
+            event.preventDefault();
+
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+            const degree1 = document.getElementById('degree1').checked;
+            const degree2 = document.getElementById('degree2').checked;
+            const degree3 = document.getElementById('degree3').checked;
+
+            if (!degree1 && !degree2 && !degree3) {
+                errorMessage.textContent = 'Please select at least one degree option.';
+                return;
+            }
+
+            successMessage.textContent = 'Selection is valid!';
+        }
+
+        function toggleCheckbox(selectedCheckbox) {
+            const checkboxes = [document.getElementById('degree1'), document.getElementById('degree2'), document.getElementById('degree3')];
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox !== selectedCheckbox) {
+                    checkbox.checked = false;
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="validateDegrees(event)">
+        <fieldset>
+            <legend><b>Degree</b></legend>
+            <input type="checkbox" id="degree1" name="degree1" value="SSC" onclick="toggleCheckbox(this)">
+            <label for="degree1">SSC</label>
+            <input type="checkbox" id="degree2" name="degree2" value="HSC" onclick="toggleCheckbox(this)">
+            <label for="degree2">HSC</label>
+            <input type="checkbox" id="degree3" name="degree3" value="BSc" onclick="toggleCheckbox(this)">
+            <label for="degree3">BSc</label><br>
+            <span id="error-message" style="color: red;"></span>
+            <span id="success-message" style="color: green;"></span>
+        </fieldset>
+        <br><input type="submit" value="Submit">
+    </form>
+</body>
+</html>

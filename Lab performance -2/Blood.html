@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group</title>
+    <script>
+        function validateBloodGroup(event) {
+            event.preventDefault();
+
+            const bloodSelect = document.getElementById('blood');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+            if (bloodSelect.value === "") {
+                errorMessage.textContent = 'Please select a blood group.';
+                return;
+            }
+
+            successMessage.textContent = 'Selection is valid!';
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="validateBloodGroup(event)">
+        <label for="blood">Blood Group:</label>
+        <select id="blood" name="blood">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+        <br>
+        <span id="error-message" style="color: red;"></span>
+        <span id="success-message" style="color: green;"></span>
+        <br><input type="submit" value="Submit">
+    </form>
+</body>
+</html>

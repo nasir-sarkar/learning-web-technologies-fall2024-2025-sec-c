@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Picture</title>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+
+            const userIdInput = document.getElementById('ID');
+            const fileInput = document.getElementById('file');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+        
+            const userId = userIdInput.value.trim();
+            if (userId === '' || Number(userId) <= 0) {
+                errorMessage.textContent = 'User  ID must be a positive number.';
+                return;
+            }
+
+            if (fileInput.files.length === 0) {
+                errorMessage.textContent = 'Please select a picture.';
+                return;
+            }
+
+            successMessage.textContent = 'Form submitted successfully!';
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend><b>Profile Picture</b></legend>
+        <form onsubmit="validateForm(event)">
+            <label for="ID">User  Id</label>
+            <input type="number" id="ID" name="ID"><br><br>
+
+            <label for="file">Picture:</label>
+            <input type="file" id="file" name="file"><br>
+
+            <span id="error-message" style="color: red;"></span>
+            <span id="success-message" style="color: green;"></span>
+            <hr><input type="submit" value="Submit"></hr>
+        </form>
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email</title>
+    <script>
+        function validateEmail(event) {
+            event.preventDefault(); 
+
+            const emailInput = document.getElementById('email').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+            if (emailInput === '') {
+                errorMessage.textContent = 'Email cannot be empty.';
+                return;
+            }
+
+            const atIndex = emailInput.indexOf('@');
+            const dotIndex = emailInput.lastIndexOf('.');
+
+            if (atIndex === -1 || atIndex === 0 || atIndex === emailInput.length - 1) {
+                errorMessage.textContent = 'Email must contain "@" and cannot be at the start or end.';
+                return;
+            }
+
+            if (dotIndex === -1 || dotIndex <= atIndex + 1 || dotIndex === emailInput.length - 1) {
+                errorMessage.textContent = 'Email must contain a valid domain after "@" and cannot end with a dot.';
+                return;
+            }
+
+            successMessage.textContent = 'Email is valid!';
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="validateEmail(event)">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span id="error-message" style="color: red;"></span><br>
+        <span id="success-message" style="color: green;"></span><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
