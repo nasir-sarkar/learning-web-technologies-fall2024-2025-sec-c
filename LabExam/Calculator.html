@@ -1,0 +1,48 @@
+
+<head>
+    <title>Calculator</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+
+        document.body.innerHTML += '<input id="display">';
+        document.body.innerHTML += '<div id="error"></div>';
+
+        function createButton(id, value) 
+        {
+            var btn = '<input type="button" id="' + id + '" value="' + value + '">';
+            document.body.innerHTML += btn;
+        }
+
+        createButton("btn1", "1");
+        createButton("btn2", "2");
+        createButton("btn3", "3");
+        createButton("btn4", "4");
+        createButton("btn5", "5");
+        createButton("btn6", "6");
+        createButton("btn7", "7");
+        createButton("btn8", "8");
+        createButton("btn9", "9");
+        createButton("btn0", "0"); 
+
+  document.body.innerHTML += "<br>";
+        
+        createButton("per", "%");
+        createButton("div", "/");
+        createButton("clear", "C");
+        createButton("add", "+");
+        createButton("sub", "-");
+        createButton("mul", "*");
+        createButton("equal", "=");
+
+
+    </script>
+
+    <script src="Calculator.js"></script>
+</body>
+</html>
